@@ -5,4 +5,5 @@
     border: 10px solid #29CCC1;
     border-width: 2px;
     margin-top: 10px;
+    min-width: 0;
 }
