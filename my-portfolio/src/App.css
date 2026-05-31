@@ -1,0 +1,169 @@
+@font-face {
+  font-family: 'Persona 3';
+  src: url(./assets/fonts/p3.ttf) format('truetype');
+}
+
+:root {
+  --crt-glow: rgba(120, 220, 255, 0.18);
+  --crt-vignette: rgba(0, 0, 0, 0.38);
+  --crt-flicker-opacity: 0.035;
+  --crt-bezel-size: 18px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Persona 3', sans-serif;
+  background: #05070a;
+  color: #f5fbff;
+  text-shadow:
+    0 0 3px rgba(255, 255, 255, 0.65),
+    0 0 10px var(--crt-glow);
+}
+
+button {
+  font-family: 'Persona 3', sans-serif;
+}
+
+.scanlines {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: var(--crt-bezel-size);
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 55%),
+    #05070a;
+  filter: contrast(1.08) saturate(1.15);
+}
+
+/* moving scanline + screen-wide scanlines */
+.scanlines::before,
+.scanlines::after {
+  display: block;
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+}
+
+.scanlines::before {
+  z-index: 2147483649;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 100%
+    );
+  height: 3px;
+  opacity: 0.45;
+  animation: scanline 6s linear infinite;
+}
+
+.scanlines::after {
+  z-index: 2147483648;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(0, 0, 0, 0.18) 51%
+    );
+  background-size: 100% 4px;
+  animation: scanlines 1s steps(60) infinite;
+}
+
+/* CRT overlay: flicker, RGB separation, vignette, curvature illusion */
+body::before {
+  content: "";
+  position: fixed;
+  inset: var(--crt-bezel-size);
+  pointer-events: none;
+  z-index: 2147483646;
+  border-radius: 10% / 7%;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 42%,
+      rgba(0, 0, 0, 0.72) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.045),
+      rgba(0, 255, 120, 0.025),
+      rgba(0, 120, 255, 0.045)
+    );
+  mix-blend-mode: screen;
+  opacity: 0.82;
+  animation: crt-flicker 0.12s infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  border: var(--crt-bezel-size) solid #020304;
+  border-radius: 7% / 5%;
+  box-shadow:
+    inset 0 0 100px rgba(0, 0, 0, 0.95),
+    inset 0 0 32px rgba(255, 255, 255, 0.08),
+    0 0 34px var(--crt-glow);
+  opacity: 0.95;
+}
+
+/* Optional: add class="crt-text" to headings/logos for stronger phosphor split */
+.crt-text {
+  text-shadow:
+    1px 0 rgba(255, 0, 0, 0.55),
+    -1px 0 rgba(0, 180, 255, 0.55),
+    0 0 8px rgba(255, 255, 255, 0.55);
+}
+
+@keyframes scanline {
+  0% {
+    transform: translate3d(0, -100vh, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 100vh, 0);
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 4px;
+  }
+}
+
+@keyframes crt-flicker {
+  0%, 100% {
+    opacity: 0.68;
+  }
+
+  50% {
+    opacity: calc(0.68 + var(--crt-flicker-opacity));
+  }
+}
+
+.scanlines {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: crtBoot 0.8s ease-out forwards;
+}
+
+@keyframes crtBoot {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

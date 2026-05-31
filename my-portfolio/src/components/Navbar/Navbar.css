@@ -1,0 +1,34 @@
+.navbar {
+    /* navbar container */
+    border: 10px solid #29CCC1;
+    border-width: 2px;
+}
+
+.nav-links {
+    /* the list of links */
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-links li {
+    /* each list item */
+    list-style-type: none;
+}
+
+.nav-links button {
+     /* the buttons */
+     background: none;
+     border: none;
+     font-size: 32px;
+     color: #29CCC1;
+     padding-right: 0px;
+     
+}
+
+.nav-links button:hover {
+    color: #CC2934;
+}
+
+.nav-links button:active {
+    color: #cc2934c2;
+}

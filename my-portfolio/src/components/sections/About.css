@@ -1,0 +1,41 @@
+.about-content {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    height: 100%;
+    gap: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.text-panel, 
+.ascii-panel {
+    flex: 1;
+    border: 2px solid #29CCC1;
+}
+
+.text-panel h1 {
+    font-family: 'Persona 3', sans-serif;
+    color: #29CCC1;
+    font-size: 14px;
+    margin-bottom: 26px;
+}
+
+.text-panel p{
+    color: #29CCC1;
+    font-size: 14px;
+}
+
+.text-panel span {
+    
+}
+
+.ascii-art {
+  margin: 15px;
+  white-space: pre;
+  font-family: monospace;
+  font-size: 8.5px;
+  line-height: 1;
+  color: #f5fbff;
+  overflow: hidden;
+}
