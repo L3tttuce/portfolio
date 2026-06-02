@@ -1,20 +1,11 @@
-import { useEffect, useState } from 'react';
-import './About.css';
 import makotoImage from '../../assets/makoto.png';
-import { loadImageAsAscii } from './AsciiPanel';
+import AsciiPanel from './AsciiPanel';
+import TextPanel from './TextPanel';
 
 function About() {
-  const [ascii, setAscii] = useState('');
-
-  useEffect(() => {
-    setTimeout(() => {
-      loadImageAsAscii(makotoImage, setAscii, 120, 20)
-    }, 1000)
-  }, []);
-
   return (
-    <div className='about-content'>
-      <div className='text-panel'>
+    <div className="two-panel-layout">
+      <TextPanel>
         <h1>about me</h1>
         <p>
           About text Lorem ipsum dolor sit amet consectetur adipiscing elit.
@@ -23,14 +14,15 @@ function About() {
           About text Lorem ipsum dolor sit amet consectetur adipiscing elit.
           About text Lorem ipsum dolor sit amet consectetur adipiscing elit.
           About text Lorem ipsum dolor sit amet consectetur adipiscing elit.
-          About text Lorem ipsum dolor sit amet consectetur adipiscing elit.
-          About text Lorem ipsum dolor sit amet consectetur adipiscing elit.
         </p>
-      </div>
+      </TextPanel>
 
-      <div className='ascii-panel'>
-        <pre className='ascii-art'>{ascii}</pre>
-      </div>
+      <AsciiPanel
+        imageSrc={makotoImage}
+        width={120}
+        speed={20}
+        delay={1000}
+      />
     </div>
   );
 }

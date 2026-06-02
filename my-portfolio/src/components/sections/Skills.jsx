@@ -1,8 +1,10 @@
+
 function Skills() {
     return(
-        <h3>
-            Skills text
-        </h3>
+        <div className='section-layout'>
+            
+
+        </div>
     );
 }
 

@@ -1,0 +1,23 @@
+.ascii-panel {
+    flex: 1 1 0;
+    width: 0;
+    border: 2px solid #29CCC1;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    container-type: size;
+    box-sizing: border-box;
+}
+
+.ascii-art {
+    white-space: pre;
+    font-family: monospace;
+    line-height: 1;
+    font-size: clamp(6px, 1.26cqw, 14px);
+    color: #f5fbff;
+    margin: 0;
+}

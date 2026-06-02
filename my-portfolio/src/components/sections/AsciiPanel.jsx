@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
+import './AsciiPanel.css';
+
 const chars = '@%#*+=-:. ';
 
-export function imageToAscii(image, width = 120) {
+function imageToAscii(image, width = 120) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
@@ -19,15 +22,18 @@ export function imageToAscii(image, width = 120) {
     for (let x = 0; x < width; x++) {
       const i = (y * width + x) * 4;
 
-      const r = pixels[i];
-      const g = pixels[i + 1];
-      const b = pixels[i + 2];
+const r = pixels[i];
+const g = pixels[i + 1];
+const b = pixels[i + 2];
+const a = pixels[i + 3];
 
-      const brightness = (r + g + b) / 3;
+if (a < 128) {
+  result += ' ';
+  continue;
+}
 
-      const charIndex = Math.floor(
-        (brightness / 255) * (chars.length - 1)
-      );
+const brightness = (r + g + b) / 3;
+      const charIndex = Math.floor((brightness / 255) * (chars.length - 1));
 
       result += chars[charIndex];
     }
@@ -38,7 +44,7 @@ export function imageToAscii(image, width = 120) {
   return result;
 }
 
-export function animateAscii(fullAscii, setAscii, speed = 15) {
+function animateAscii(fullAscii, setAscii, speed = 15) {
   const lines = fullAscii.split('\n');
   let currentLine = 0;
 
@@ -54,12 +60,34 @@ export function animateAscii(fullAscii, setAscii, speed = 15) {
   return interval;
 }
 
-export function loadImageAsAscii(imageSrc, setAscii, width = 120, speed = 15) {
-  const image = new Image();
-  image.src = imageSrc;
+function AsciiPanel({ imageSrc, width = 120, speed = 15, delay = 1000 }) {
+  const [ascii, setAscii] = useState('');
 
-  image.onload = () => {
-    const generatedAscii = imageToAscii(image, width);
-    animateAscii(generatedAscii, setAscii, speed);
-  };
+  useEffect(() => {
+    let interval;
+    let timeout;
+
+    const image = new Image();
+    image.src = imageSrc;
+
+    image.onload = () => {
+      timeout = setTimeout(() => {
+        const generatedAscii = imageToAscii(image, width);
+        interval = animateAscii(generatedAscii, setAscii, speed);
+      }, delay);
+    };
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+  }, [imageSrc, width, speed, delay]);
+
+  return (
+    <div className="ascii-panel">
+      <pre className="ascii-art">{ascii}</pre>
+    </div>
+  );
 }
+
+export default AsciiPanel;

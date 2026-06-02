@@ -118,3 +118,31 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #29CCC1 #00181a;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #00181a;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #29CCC1;
+    border: 2px solid #00181a;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #f5fbff;
+}
+
+*::-webkit-scrollbar-corner {
+    background: #00181a;
+}

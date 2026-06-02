@@ -1,28 +1,32 @@
 .navbar {
-    /* navbar container */
-    border: 10px solid #29CCC1;
-    border-width: 2px;
+    border: 2px solid #29CCC1;
+    height: 60px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
 }
 
 .nav-links {
-    /* the list of links */
     display: flex;
     justify-content: space-around;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li {
-    /* each list item */
     list-style-type: none;
 }
 
 .nav-links button {
-     /* the buttons */
-     background: none;
-     border: none;
-     font-size: 32px;
-     color: #29CCC1;
-     padding-right: 0px;
-     
+    background: none;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    color: #29CCC1;
+    padding: 0;
 }
 
 .nav-links button:hover {
