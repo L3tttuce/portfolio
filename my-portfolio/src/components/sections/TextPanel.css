@@ -14,10 +14,56 @@
     font-family: 'Persona 3', sans-serif;
     color: #29CCC1;
     font-size: 14px;
-    margin-bottom: 26px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.text-panel h2 {
+    font-family: 'Persona 3', sans-serif;
+    color: #CC2934;
+    font-size: 16px;
+    text-align: left;
 }
 
 .text-panel p {
     color: #29CCC1;
     font-size: 14px;
+    text-align: left;
+}
+
+.subheader{
+    color: #D3D3D3;
+}
+
+.divider {
+    font-family: 'Persona 3', sans-serif;
+    color: #FBF894;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.topic1{
+    color: #ff0038;
+}
+
+.topic2{
+    color: #ff4800;
+}
+
+.topic3{
+    color: #ffc800;
+}
+.topic4{
+    color: #b7ff00;
+}
+
+.topic5{
+    color: #37FF00;
+}
+
+.topic6{
+    color: #00FF49;
 }
